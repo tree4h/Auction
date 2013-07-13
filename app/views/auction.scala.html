@@ -1,0 +1,44 @@
+@(auction: models.Auction)(bids: List[models.Bid])
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Refresh" content="60">
+	<title>Auction</title>
+	<!-- CSS -->
+	<link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+</head>
+<body style="padding-top:40px">
+
+	<div class="container">
+	<div class="span9">
+		@top("0")
+
+	<p>AuctionID:@auction.id 出品者:@auction.getExhibitorName() 商品名:@auction.getItemName() STATUS:@auction.getStatus() </p>
+	@if(auction.getStatus() == AuctionStatus.落札){
+		<p>落札価格:@auction.getMaxBidPrice()円 </p>
+	}
+	@if(auction.getStatus() == AuctionStatus.出品中){
+		<p>最高価格:@auction.getMaxBidPrice()円    残り時間：@auction.getAvailableTime()分</p>
+	}
+	<table class="table table-bordered table-condensed">
+	<thead>
+		<tr><th>id</th><th>Bidder</th><th>Date</th><th>Price</th><th>STATE</th></tr>
+	</thead>
+	<tbody>
+   		@for(bid <- bids) {
+			@if(bid.getStatus() == BidStatus.落札){
+				<tr class="error"><td>@bid.id</td><td>@bid.getBidderName()</td><td>@bid.getDateString()</td><td>@bid.getPrice()</td><td>@bid.getStatus()</td></tr>
+			} else {
+				<tr><td>@bid.id</td><td>@bid.getBidderName()</td><td>@bid.getDateString()</td><td>@bid.getPrice()</td><td>@bid.getStatus()</td></tr>
+			}
+		}
+	</tbody>
+	</table>
+
+	</div>
+	</div>
+</body>
+</html>

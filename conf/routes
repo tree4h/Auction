@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+#GET     /                           controllers.Application.index()
+GET	/			controllers.MemberController.showManageMenu()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Auction
+GET	/manage			controllers.MemberController.showManageMenu()
+GET	/addmember		controllers.MemberController.addMember()
+GET	/additem		controllers.MemberController.addItem()
+GET	/exhibit		controllers.MemberController.exhibit()
+GET	/bid			controllers.MemberController.bidAuction()
+
+GET	/memberlist		controllers.MarketController.showMemberList()
+GET	/itemlist		controllers.MarketController.showItemList()
+GET	/auctionlist	controllers.MarketController.showAuctionList()
+GET	/bidlist		controllers.MarketController.showBidList()
+GET	/auction		controllers.MarketController.showAuction()
+GET	/deldata		controllers.MarketController.deleteData()
+GET	/setdata		controllers.MarketController.setTestData()

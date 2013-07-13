@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>MarketManage</title>
+	<!-- CSS -->
+	<link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="/assets/bootstrap/css/datepicker.css" type="text/css" rel="stylesheet">
+	<script src="/assets/bootstrap/js/jquery.js" type="text/javascript"></script>
+	<script src="/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/assets/bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
+	<script src="/assets/bootstrap/js/jquery.validate.js" type="text/javascript"></script>
+	<script src="/assets/bootstrap/js/messages_ja.js" type="text/javascript"></script>
+</head>
+<body style="padding-top:40px">
+
+	<div class="container">
+	<div class="span9">
+		@top("1")
+	<form id="form-id1" action="/addmember" method="GET" class="form-horizontal">
+	<div class="control-group">
+	<label class="control-label">メンバー登録</label>
+	<div class="controls">
+		<input type="text" class="span2" placeholder="Name" name="name" required>
+	    <button class="btn btn-primary" type="submit">Entry</button>
+	</div>
+	</div>
+    </form>
+
+	<form id="form-id2" action="/additem" method="GET" class="form-horizontal">
+	<div class="control-group">
+	<label class="control-label">商品追加</label>
+	<div class="controls">
+		<input type="number" class="span2" placeholder="Member ID" name="member" required>
+		<input type="text" class="span2" placeholder="Item Name" name="name" required>
+	    <button class="btn btn-primary" type="submit">Add</button>
+	</div>
+	</div>
+    </form>
+
+	<form id="form-id3" action="/exhibit" method="GET" class="form-horizontal">
+		@exhibitform1()
+    </form>
+    
+	<form id="form-id4" action="/bid" method="GET" class="form-horizontal">
+	<div class="control-group">
+	<label class="control-label">入札</label>
+	<div class="controls">
+		<input type="number" class="span2" placeholder="Member ID" name="member" required>
+		<input type="number" class="span2" placeholder="Auction ID" name="auction" required>
+	</div>
+	<div class="controls">
+		<input type="number" class="span2" placeholder="Bid Price" name="price" required>
+	    <button class="btn btn-primary" type="submit">Bid</button>
+	</div>
+	</div>
+    </form>
+
+	<form id="form-id5" action="/setdata" method="GET" class="form-horizontal">
+	<div class="control-group">
+	<label class="control-label">データ登録</label>
+	<div class="controls">
+		<select class="span2" name="pattern">
+			<option value="1">Pattern01</option>
+		</select>
+	    <button class="btn btn-primary" type="submit">Set</button>
+	</div>
+	</div>
+    </form>
+
+	<form id="form-id6" action="/deldata" method="GET" class="form-horizontal">
+	<div class="control-group">
+	<label class="control-label">データ削除</label>
+	<div class="controls">
+		<input type="number" class="span2" placeholder="Member ID" name="member">
+	    <button class="btn btn-primary" type="submit">Delete</button>
+	</div>
+	</div>
+    </form>
+
+	</div>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+	   	$("#form-id1").validate();
+	   	$("#form-id2").validate();
+	   	$("#form-id3").validate();
+	   	$("#form-id4").validate();
+	   	$("#form-id5").validate();
+	   	$("#form-id6").validate();
+	});
+	</script>
+
+    <script type="text/javascript">
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+     
+    var checkin = $('#dp1').datepicker({
+      	//format: 'yyyy/mm/dd'
+      	onRender: function(date) {
+    		return date.valueOf() < now.valueOf() ? 'disabled' : '';
+    	}
+   	}).on('changeDate', function(ev) {
+   		if (ev.date.valueOf() > checkout.date.valueOf()) {
+    		var newDate = new Date(ev.date)
+    		newDate.setDate(newDate.getDate() + 1);
+    		checkout.setValue(newDate);
+    	}
+    	checkin.hide();
+    	$('#dp2')[0].focus();
+	}).data('datepicker');
+   		var checkout = $('#dp2').datepicker({
+   	   		//format: 'yyyy/mm/dd'
+    		onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+    		}
+   		}).on('changeDate', function(ev) {
+    		checkout.hide();
+    }).data('datepicker');
+    
+	</script>
+    
+<!--
+	$(function() {
+		$('#dp1').datepicker({
+			format: 'yyyy/mm/dd',
+			language: 'jp',
+			inputMask: 
+			autoclose: true
+		}); 
+	});
+	$(function() {
+		$('#dp2').datepicker({
+			format: 'yyyy/mm/dd',
+			language: 'jp',
+			autoclose: true
+		}); 
+	});
+ -->    
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="/assets/bootstrap/js/jquery.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-typeahead.js"></script>
+-->
+</body>
+</html>

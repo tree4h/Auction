@@ -1,0 +1,56 @@
+@(auctions: List[models.Auction])
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<!--  <meta http-equiv="Refresh" content="10"> -->
+	<title>AuctionList</title>
+	<!-- CSS -->
+	<link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+</head>
+<body style="padding-top:40px">
+
+	<div class="container">
+	<div class="span9">
+		@top("2")
+
+	<p>@date()</p>
+	<table class="table table-hover table-bordered table-condensed">
+	<thead>
+		<tr><th>ID</th><th>Exhibitor</th><th>Item</th><th>START</th><th>END</th><th>STATE</th></tr>
+	</thead>
+	</tbody>
+		@for(auction <- auctions) {
+		  <tr>
+		  <td><a href="http://localhost:9000/auction?auction=@auction.id" target="_blank">@auction.id</a></td>
+		  <td>@auction.getExhibitorName()</td><td>@auction.getItemName()</td><td>@auction.getStartDate()</td><td>@auction.getEndDate()</td><td>@auction.getStatus()</td>
+		  </tr>
+		}
+	</tbody>
+	</table>
+
+	</div>
+	</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="/assets/bootstrap/js/jquery.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-typeahead.js"></script>
+-->
+</body>
+</html>

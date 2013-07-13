@@ -1,0 +1,53 @@
+@(members: List[models.Member])
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>MemberList</title>
+	<!-- CSS -->
+	<link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+</head>
+<body style="padding-top:40px">
+
+	<div class="container">
+	<div class="span9">
+		@top("3")
+
+	<table class="table table-hover table-bordered table-condensed">
+	<thead>
+		<tr><th>ID</th><th>Name</th><th>Items</th><th>Bids</th></tr>
+	</thead>
+	</tbody>
+		@for(member <- members) {
+		  <tr><td>@member.id</td><td>@member.getName()</td><td>@member.getNumberOfItems()</td><td>@member.getNumberOfBids</td></tr>
+		}
+	</tbody>
+	</table>
+	
+	</div>
+	</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<!--
+    <script src="/assets/bootstrap/js/jquery.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-button.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap-typeahead.js"></script>
+-->
+</body>
+</html>

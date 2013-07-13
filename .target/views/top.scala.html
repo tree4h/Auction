@@ -1,0 +1,39 @@
+@(active_menu: String)
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+		<div class="container">
+			<a href="" class="brand">IS Auction</a>
+			<ul class="nav">
+				<li id="1"><a href="http://localhost:9000/manage">Manage</a></li>
+				<li id="2"><a href="http://localhost:9000/auctionlist">Market</a></li>
+				<li id="3"><a href="http://localhost:9000/memberlist">Member</a></li>
+				<li id="4"><a href="http://localhost:9000/itemlist">Item</a></li>
+				<li id="5"><a href="http://localhost:9000/bidlist">Bid</a></li>
+			<!--
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">List<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://localhost:9000/auctionlist">Member</a></li>
+						<li><a href="http://localhost:9000/auctionlist">Item</a></li>
+						<li><a href="http://localhost:9000/auctionlist">Auction</a></li>
+						<li><a href="http://localhost:9000/auctionlist">Bid</a></li>
+					</ul>
+				</li>
+			-->
+			</ul>
+		</div>
+		</div>
+	</div>
+	</br>
+	</br>
+	
+	<p value=@active_menu></p>
+	<script type="text/javascript">
+		var i = $('p').attr('value');
+	   	//document.write(i);
+		if(i=='1') {$('#1').attr('class','active');}
+		if(i=='2') {$('#2').attr('class','active');}
+		if(i=='3') {$('#3').attr('class','active');}
+		if(i=='4') {$('#4').attr('class','active');}
+		if(i=='5') {$('#5').attr('class','active');}
+	</script>
