@@ -34,10 +34,10 @@ public class MemberController extends Controller {
 		Auction auction = f2.byId(Long.decode(auction_id));
 		
 		if (mem == null) {
-			return badRequest("指定された会員が存在しません。");
+			return ok(manage.render(Messages.ERROR_MEMBER_ID_NOEXIT.getMessage()));
 		}
 		if (auction == null) {
-			return badRequest("指定されたオークションが存在しません。");
+			return ok(manage.render(Messages.ERROR_AUCTION_ID_NOEXIT.getMessage()));
 		}
 			
 		Bid bid = new Bid(mem,Integer.parseInt(price));
@@ -45,11 +45,11 @@ public class MemberController extends Controller {
 		auction.save();
 		//bid.save();
 		
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 
 	public static Result showManageMenu() {
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 
 	public static Result exhibit() {
@@ -69,10 +69,10 @@ public class MemberController extends Controller {
 		Item item = f2.byId(Long.decode(item_id));
 		
 		if (mem == null) {
-			return badRequest("指定された会員が存在しません。");
+			return ok(manage.render(Messages.ERROR_MEMBER_ID_NOEXIT.getMessage()));
 		}
 		if (item == null) {
-			return badRequest("指定された商品が存在しません。");
+			return ok(manage.render(Messages.ERROR_ITEM_ID_NOEXIT.getMessage()));
 		}
 		
 		Date d1 = DateFactory.makeDate(start);
@@ -84,7 +84,7 @@ public class MemberController extends Controller {
 		
 		Auction auction = new Auction(d1,d2,mem,item);
 		auction.save();
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 
 	public static Result addMember() {
@@ -94,7 +94,7 @@ public class MemberController extends Controller {
 		String name = input.data().get("name");
 		Member m1 = new Member(name);
 		m1.save();
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 	
 	public static Result addItem() {
@@ -107,12 +107,12 @@ public class MemberController extends Controller {
 		Finder<Long, Member> finder = new Finder<Long, Member>(Long.class, Member.class);
 		Member mem = finder.byId(Long.decode(id));
 		if (mem == null) {
-			return badRequest("指定された会員が存在しません。");
+			return ok(manage.render(Messages.ERROR_MEMBER_ID_NOEXIT.getMessage()));
 		}
 		
 		Item item = new Item(name);
 		mem.addItem(item);
 		mem.save();
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 }

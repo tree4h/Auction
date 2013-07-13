@@ -33,7 +33,7 @@ public class MarketController extends Controller {
 		Auction a1 = f1.byId(Long.decode(auction_id));
 		
 		if (a1 == null) {
-			return badRequest("指定されたオークションが存在しません。");
+			return badRequest(Messages.ERROR_AUCTION_ID_NOEXIT.getMessage());
 		}
 		List<Bid> bids = a1.getBids();
 		List<Bid> sortBids = sortBids(bids);
@@ -72,17 +72,17 @@ public class MarketController extends Controller {
 		
 		if(id=="") {
 			deleteAllData();
-			return ok(manage.render());
+			return ok(manage.render(""));
 		}
 
 		Finder<Long, Member> finder = new Finder<Long, Member>(Long.class, Member.class);
 		Member mem = finder.byId(Long.decode(id));
 		if (mem == null) {
-			return badRequest("指定された会員が存在しません。");
+			return ok(manage.render(Messages.ERROR_MEMBER_ID_NOEXIT.getMessage()));
 		}
 		mem.delete();
 		mem.save();
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 	
 	public static Result setTestData() {
@@ -93,7 +93,7 @@ public class MarketController extends Controller {
 		if(pattern.equals("1")) {
 			setTestData01();
 		}
-		return ok(manage.render());
+		return ok(manage.render(""));
 	}
 	
 	private static List<Bid> sortBids(List<Bid> bids) {

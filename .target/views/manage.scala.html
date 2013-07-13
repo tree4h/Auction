@@ -1,3 +1,4 @@
+@(warning: String)
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,6 +18,13 @@
 	<div class="container">
 	<div class="span9">
 		@top("1")
+	
+	@if(warning != ""){
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>Warning!</strong> @warning
+		</div>
+	}
 	<form id="form-id1" action="/addmember" method="GET" class="form-horizontal">
 	<div class="control-group">
 	<label class="control-label">メンバー登録</label>
