@@ -43,6 +43,10 @@ public class Item extends Model {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getOwnerName() {
 		return member.getName();
 	}

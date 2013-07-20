@@ -46,6 +46,8 @@ public class Auction extends Model {
     private List<Bid> bids = new LinkedList<Bid>();
     @NotNull
     private AuctionStatus status;
+    //@NotNull
+    //private AuctionState state;
     
     private DateFactory df = new DateFactory();
     
@@ -55,7 +57,12 @@ public class Auction extends Model {
 		member = m;
 		item = i;
 		status = AuctionStatus.開始待ち;
+		//this.setState(new AuctionState01());
 	}
+	
+	//public void setState(AuctionState newState) {
+	//	this.state = newState;
+	//}
 	
 	public void bid(Bid bid) {
 		if(bid.getDate().before(start)) {

@@ -4,12 +4,15 @@
 
 # Home page
 #GET     /                           controllers.Application.index()
-GET	/			controllers.MemberController.showManageMenu()
+GET	/			controllers.MemberController.signin()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Auction
+GET	/member			controllers.MemberController.showMember()
+GET	/member/item			controllers.MemberController.showItem()
+POST	/member/exhibit			controllers.MemberController.exhibit2()
 GET	/manage			controllers.MemberController.showManageMenu()
 GET	/addmember		controllers.MemberController.addMember()
 GET	/additem		controllers.MemberController.addItem()
