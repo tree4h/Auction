@@ -8,6 +8,26 @@ import java.util.Map;
 
 public class ControllerUtils {
 	
+	//現在時刻からendで指定された日時までの残り時間を返す
+	//60分以上は時間で、1分から60分までは分で、1分未満は秒で、0秒以下は"終了"を返す
+	public static String getAvailableTime(Date end) {
+		long d1 = (new Date()).getTime();
+		long d2 = end.getTime();
+		long diffSecond = (d2-d1)/1000;
+		if(diffSecond >= 3600) {
+			return Long.toString(diffSecond/3600)+"時間";
+		}
+		else if(diffSecond >= 60) {
+			return Long.toString(diffSecond/60)+"分";
+		}
+		else if(diffSecond > 0) {
+			return Long.toString(diffSecond)+"秒";
+		}
+		else {
+			return "終了";
+		}
+	}
+	
 	//Itemの出品開始日表示用
 	public static String format2(Date date) {
 		if(date != null) {
